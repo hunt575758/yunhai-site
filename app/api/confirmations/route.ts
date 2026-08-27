@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { eq } from "drizzle-orm";
 import { getChatGPTUser } from "../../chatgpt-auth";
 import { getDb } from "../../../db";
