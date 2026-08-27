@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getChatGPTUser } from "../../../chatgpt-auth";
 import { getAdmin } from "../../../../db/data";
 import { getDb } from "../../../../db";
