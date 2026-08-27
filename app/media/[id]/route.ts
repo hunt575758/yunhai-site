@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { env } from "cloudflare:workers";
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../db";
