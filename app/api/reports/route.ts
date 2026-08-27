@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { env } from "cloudflare:workers";
 import { and, desc, eq } from "drizzle-orm";
 import { getChatGPTUser } from "../../chatgpt-auth";
