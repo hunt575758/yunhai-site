@@ -54,6 +54,41 @@ export default async function Home() {
     user && (!admin || admin.email === user.email.toLowerCase()),
   );
   const orderedEntries = [...entries].sort((a, b) => a.id - b.id);
+  const manualEntries = [
+    {
+      reportDate: "2026-09-03",
+      cumulativeDays: 17,
+      summary: "進行第4次臉部描繪。現在暖色調已經畫好，接下來逐漸加入寒色調，讓皮膚的色彩層次慢慢堆疊起來。",
+      images: [
+        "/progress/2026-09-03/01-overview.jpg",
+        "/progress/2026-09-03/02-face.jpg",
+        "/progress/2026-09-03/03-hands.jpg",
+      ],
+    },
+    {
+      reportDate: "2026-09-04",
+      cumulativeDays: 18,
+      summary: "為背景的雲層加入光芒，也加深較暗區域的厚度感。",
+      images: [
+        "/progress/2026-09-04/01-overview.jpg",
+        "/progress/2026-09-04/02-cloud-light.jpg",
+        "/progress/2026-09-04/03-cloud-left.jpg",
+        "/progress/2026-09-04/04-mountain-cloud.jpg",
+        "/progress/2026-09-04/05-palette.jpg",
+        "/progress/2026-09-04/06-cloud-right.jpg",
+      ],
+    },
+    {
+      reportDate: "2026-09-09",
+      cumulativeDays: 23,
+      summary: "師父的袈裟，這個紅色使用的是林布蘭特頂級的紅色顏料。透過多層次的堆疊，才能呈現出飽滿的光澤與視覺美感。",
+      images: [
+        "/progress/2026-09-09/01-robe-overview.jpg",
+        "/progress/2026-09-09/02-robe-upper.jpg",
+        "/progress/2026-09-09/03-robe-detail.jpg",
+      ],
+    },
+  ];
 
   return (
     <main className="site-shell">
@@ -112,6 +147,26 @@ export default async function Home() {
                 <div className="entry-content">
                   <EntryMedia entry={entry} />
                   <p className="entry-note">{entry.summary || entry.completed || entry.changes || entry.title}</p>
+                </div>
+              </article>
+            ))}
+            {manualEntries.map((entry, index) => (
+              <article className="progress-entry" key={entry.reportDate}>
+                <div className="entry-time">
+                  <span className="entry-number">第 {orderedEntries.length + index + 1} 篇</span>
+                  <CalendarDays />
+                  <span>{formatDate(entry.reportDate)}</span>
+                  <strong>第 {entry.cumulativeDays} 天</strong>
+                </div>
+                <div className="entry-content">
+                  <div className={`image-grid count-${Math.min(entry.images.length, 4)}`}>
+                    {entry.images.map((src) => (
+                      <a key={src} href={src} target="_blank" rel="noreferrer">
+                        <img src={src} alt={`${entry.reportDate} 創作進度照片`} />
+                      </a>
+                    ))}
+                  </div>
+                  <p className="entry-note">{entry.summary}</p>
                 </div>
               </article>
             ))}
